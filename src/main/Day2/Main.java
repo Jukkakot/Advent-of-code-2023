@@ -1,20 +1,21 @@
 package main.Day2;
 
-import main.AOCLineIterator;
+import main.AOCLineProcessor;
 
-import java.io.FileNotFoundException;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     static Map<String, Integer> LIMITS = Map.of("red", 12, "green", 13, "blue", 14);
 
-    public static void main(String[] args) throws FileNotFoundException {
-        AtomicInteger result = new AtomicInteger();
-        new AOCLineIterator(Main.class).forEachRemaining(line -> {
-            result.getAndAdd(doYourThing(line));
-        });
-        System.out.println("Result: " + result.get());
+    public static void main(String[] args) {
+        new AOCLineProcessor(Main.class) {
+            @Override
+            public int processLine(String line) {
+                return doYourThing(line);
+            }
+        }.processLines();
     }
 
     private static int doYourThing(String line) {

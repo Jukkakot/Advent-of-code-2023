@@ -1,9 +1,8 @@
 package main.Day1;
 
-import main.AOCLineIterator;
+import main.AOCLineProcessor;
 
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     static Map<String, String> STR_TO_INT_MAP = Map.of(
@@ -18,19 +17,18 @@ public class Main {
             "nine", "9");
 
     public static void main(String[] args) {
-        try {
-            AtomicInteger result = new AtomicInteger();
+        new AOCLineProcessor(Main.class) {
+            @Override
+            public int processLine(String line) {
+                return doYourThing(line);
+            }
+        }.processLines();
+    }
 
-            new AOCLineIterator(Main.class).forEachRemaining(row -> {
-                String first = getFirstNumber(row, false);
-                String second = getFirstNumber(reverse(row), true);
-                result.addAndGet(Integer.parseInt(first + second));
-            });
-            System.out.println(result.get());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    private static int doYourThing(String line) {
+        String first = getFirstNumber(line, false);
+        String second = getFirstNumber(reverse(line), true);
+        return Integer.parseInt(first + second);
     }
 
     private static String reverse(String str) {
