@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class AOCLineProcessor {
+public class AOCLineProcessor {
     private Iterator<String> iterator;
 
     public AOCLineProcessor(Class clazz) {
@@ -18,13 +18,20 @@ public abstract class AOCLineProcessor {
         }
     }
 
-    public final void processLines() {
+    public Iterator<String> getIterator() {
+        return iterator;
+    }
+
+    public void processLines() {
         AtomicInteger result = new AtomicInteger();
-        iterator.forEachRemaining(line -> {
+        getIterator().forEachRemaining(line -> {
             result.getAndAdd(processLine(line));
         });
         System.out.println("Result: " + result.get());
     }
 
-    protected abstract int processLine(String line);
+    protected int processLine(String line) {
+        System.out.println(line);
+        return 0;
+    }
 }
