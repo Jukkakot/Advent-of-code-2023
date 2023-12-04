@@ -1,4 +1,4 @@
-package main.Day2;
+package main.AOC2023.Day2;
 
 import main.AOCLineProcessor;
 

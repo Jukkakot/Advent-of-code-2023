@@ -42,4 +42,32 @@ public class Utils {
             }
         }
     }
+    public static boolean rangesContainEachOther(int[] range1, int[] range2) {
+        if ((range1[0] <= range2[0] && range1[1] >= range2[1])
+                || (range2[0] <= range1[0] && range2[1] >= range1[1])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean rangesOverlap(int[] range1, int[] range2) {
+        if (range1[0] <= range2[1] && range1[1] >= range2[0]) {
+            return true; // Ranges overlap
+        } else {
+            return false; // Ranges do not overlap
+        }
+    }
+
+    public static <T> int countMatchingElements(List<T> list1, List<T> list2) {
+        int count = 0;
+
+        for (T element : list1) {
+            if (list2.contains(element)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
 }
