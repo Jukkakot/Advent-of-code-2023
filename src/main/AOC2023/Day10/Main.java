@@ -113,10 +113,10 @@ public class Main {
 
     public static void main(String[] args) {
         new AOCLineProcessor(Main.class).getIterator().forEachRemaining(Main::printInput);
-        Utils.printListWithElementsPerRow(MAP, WIDTH);
+        Utils.printPrintableListWithElementsPerRow(MAP, WIDTH);
         findPath();
         System.out.println(PATH);
-        Utils.printListWithElementsPerRow(MAP, WIDTH);
+        Utils.printPrintableListWithElementsPerRow(MAP, WIDTH);
 
         System.out.println("Result: " + PATH.size() / 2);
     }

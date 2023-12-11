@@ -102,7 +102,7 @@ public class Main {
 
             }
         }
-        Utils.printListWithElementsPerRow(SPOTS, WIDTH);
+        Utils.printPrintableListWithElementsPerRow(SPOTS, WIDTH);
 
 //        for (int i = 0; i < SPOTS.size(); i++) {
 //            Spot spot = SPOTS.get(i);

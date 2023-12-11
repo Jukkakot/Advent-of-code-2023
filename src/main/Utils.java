@@ -71,7 +71,7 @@ public class Utils {
         return result;
     }
 
-    public static void printListWithElementsPerRow(List<? extends Printable> list, int elementsPerRow) {
+    public static void printPrintableListWithElementsPerRow(List<? extends Printable> list, int elementsPerRow) {
         int size = list.size();
         int printedElements = 0;
 
@@ -84,7 +84,19 @@ public class Utils {
             }
         }
     }
+    public static void printListWithElementsPerRow(List<?> list, int elementsPerRow) {
+        int size = list.size();
+        int printedElements = 0;
 
+        for (Object item : list) {
+            System.out.print(item);
+            printedElements++;
+
+            if (printedElements % elementsPerRow == 0 || printedElements == size) {
+                System.out.println();
+            }
+        }
+    }
     public static boolean rangesContainEachOther(int[] range1, int[] range2) {
         if ((range1[0] <= range2[0] && range1[1] >= range2[1])
                 || (range2[0] <= range1[0] && range2[1] >= range1[1])) {
@@ -112,5 +124,65 @@ public class Utils {
         }
 
         return count;
+    }
+
+    public static int[] get2DCoordinates(int index, int rowLength) {
+        int[] coordinates = new int[2];
+        if (index < 0) {
+            // Handle invalid index
+            System.out.println("Invalid index");
+            return coordinates;
+        }
+
+        coordinates[0] = index % rowLength; // Calculate the column
+        coordinates[1] = index / rowLength; // Calculate the row
+
+        return coordinates;
+    }
+
+    public static int shortestPath(int[] pointA, int[] pointB) {
+        int rowDifference = Math.abs(pointB[0] - pointA[0]);
+        int columnDifference = Math.abs(pointB[1] - pointA[1]);
+
+        // The total Manhattan distance is the minimum steps required
+        return rowDifference + columnDifference;
+    }
+
+    public static <T> List<List<T>> getUniquePairs(List<T> list) {
+        List<List<T>> pairs = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i + 1; j < list.size(); j++) {
+                List<T> pair = new ArrayList<>();
+                pair.add(list.get(i));
+                pair.add(list.get(j));
+                pairs.add(pair);
+            }
+        }
+
+        return pairs;
+    }
+
+    public static <T> List<List<T>> createListOfLists(List<T> list, int count) {
+        List<List<T>> listOfLists = new ArrayList<>();
+
+        for (int i = 0; i < count; i++) {
+            // Create a new list and add elements from the given list to it
+            List<T> newList = new ArrayList<>(list);
+            listOfLists.add(newList);
+        }
+
+        return listOfLists;
+    }
+    public static boolean arraysMatch(int[] arr1, int[] arr2) {
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
